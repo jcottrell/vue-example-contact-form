@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact form example</title>
+    <!-- bootstrap for styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <!-- jquery, needed by Vue -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <!-- see the two script tags right before </body> for Vue and our app code, vue.js -->
+</head>
+<body>
+    <div style="width:50%;" class="container">
+        <h2 class="text-center">Contact Form</h2>
+        <!-- id of contact_form used in vue.js to designate this form as our app -->
+        <!-- also, uses several bootstrap classes (form-group, form-control, btn, btn-primary, etc.) -->
+        <!-- v- is our vue stuff; "on:" is hooking into an event -->
+        <!-- here v-on:submit lets us connect the submit event of the form -->
+        <!--    our ="submitForm" method that is called here is in vue.js -->
+        <!--    note that .prevent after :submit prevents the form from submiting via the action attribute -->
+        <form id="contact_form"  v-on:submit.prevent="submitForm" action="">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <!-- v-model link to the model (i.e. pieces of the data section of vue.js) -->
+                <!-- v-on lets us run methods from vue.js : this one is v-on:blur for the blur event -->
+                <!--    blur just means that the field no longer has 'focus' -->
+                <input v-model="name" v-on:blur="isValidName" class="form-control" name="name" type="text" />
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input v-model="email" v-on:blur="isValidEmail" class="form-control" name="email" type="email" />
+            </div>
+            <div class="form-group">
+                <label for="message">Message <small>(<span>{{ message.length }}</span> / <span>{{ maxLength }}</span>)</label>
+                <textarea v-model="message" v-on:blur="isValidMessage" class="form-control" name="message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.17/vue.min.js"></script>
+    <script src="vue.js"></script>
+</body>
+</html>
