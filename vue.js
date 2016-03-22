@@ -1,4 +1,5 @@
 // TODO make info an IIFE
+// TODO make into Vue.component
 new Vue({
     el: '#contact_form', // id of the 'app'
     data: {
@@ -33,7 +34,15 @@ new Vue({
             //      are invalid and display message
             // TODO submit to form processor
             console.log('submitting message...');
-            alert('You clicked submit!');
+            this.$http({url: '/someUrl', method: 'POST', data: {
+                name: this.name,
+                email: this.email,
+                message: this.message
+            }}).then(function () {
+                alert('Your form was submitted!');
+            }, function () {
+                alert('Form submission failed');
+            });
         }
     }
 });
