@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Contact form example</title>
     <!-- bootstrap for styling -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
     <!-- see the two script tags right before </body> for Vue and our app code, vue.js -->
 </head>
 <body>
@@ -32,13 +32,16 @@
                 <label for="message">Message <small>(<span>{{ message.length }}</span> / <span>{{ maxLength }}</span>)</label>
                 <textarea v-model="message" v-on:blur="isValidMessage" class="form-control" name="message"></textarea>
             </div>
+            <!-- v-show (compare to v-if) shows the paragraph tag if there is an error -->
+            <!-- v-html populates the content of the paragraph tag with the error message value -->
+            <p class="alert alert-warning" v-show="errorMessage.length > 0" v-html="errorMessage"></p>
             <button type="submit" class="btn btn-primary">Send</button>
         </form>
     </div>
     <!-- Vue.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.17/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.min.js"></script>
     <!-- Vue.js plugin: Resource, gives ajax functionality -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js"></script>
     <!-- our app code -->
     <script src="vue.js"></script>
 </body>
